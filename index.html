@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - The Film Cave</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">The Film Cave</a>
+
+        <nav class="nav">
+            <a href="#">Películas</a>
+            <a href="#">Listas</a>
+            <a href="#">Adivina la película</a>
+            <a href="#">Reviews</a>
+        </nav>
+
+        <a href="#" class="avatar" aria-label="Perfil"></a>
+    </header>
+
+    <main class="container">
+    
+        <section class="search-section">
+            <form id="search-form" class="search-form">
+                <input type="text" id="search-text" placeholder="Buscar película...">
+                <select id="search-genre">
+                    <option value="">Todos los géneros</option>
+                </select>
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+
+        <section class="movie-section">
+            <div class="section-head">
+                <h2>Populares recientemente</h2>
+                <a href="#" class="section-more">Más</a>
+            </div>
+            <div id="populares" class="poster-grid"></div>
+        </section>
+
+        <section id="seccion-resultados" class="movie-section" hidden>
+            <div class="section-head"><h2>Resultados</h2></div>
+            <div id="resultados" class="movie-grid"></div>
+            <button id="cargar-mas" class="load-more" type="button" hidden>Cargar más</button>
+        </section>
+
+        <section class="movie-section">
+            <div class="section-head"><h2>Recomendaciones</h2></div>
+            <div id="recomendaciones" class="movie-grid"></div>
+        </section>
+
+        <div class="activity-layout">
+            <section class="activity-section">
+                <div class="section-head"><h2>Actividad reciente</h2></div>
+                <div id="actividad" class="activity-list"></div>
+            </section>
+
+            <aside class="sidebar">
+                <h3>Actividad</h3>
+                <div id="sidebar-actividad"></div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>The Film Cave</p>
+        <p class="tmdb">Este producto usa la API de TMDB pero no está avalado ni certificado por TMDB.</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
