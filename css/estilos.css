@@ -1437,49 +1437,196 @@ h1 {
     font-size: 13px;
 }
 
-.juego-pista {
-    display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 18px;
-    margin-bottom: 18px;
+.juego-tablero {
+    max-width: 720px;
+    margin: 0 auto;
 }
 
-.juego-imagen {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Escena con la pista escrita encima, arriba a la izquierda */
+.juego-escena {
+    position: relative;
+    overflow: hidden;
     aspect-ratio: 16 / 9;
-    background: repeating-linear-gradient(45deg, #1c1c1c 0 12px, #202020 12px 24px);
+    background: #000;
     border: 1px solid #292929;
     border-radius: 8px;
-    color: #555;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
 }
 
-.juego-pistas {
+.juego-escena img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.juego-pista-texto {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 14px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    text-shadow: 0 1px 3px #000;
+}
+
+.juego-controles {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.juego-numeros {
+    display: flex;
+    gap: 8px;
+}
+
+.juego-numeros button,
+.juego-saltar {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: #1f1f1f;
+    color: #eeeeee;
+    font: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.juego-numeros button:disabled {
+    background: #161616;
+    color: #444;
+    cursor: not-allowed;
+}
+
+.juego-numeros button.activo {
+    border-color: #00e054;
+    color: #00e054;
+}
+
+.juego-saltar {
+    background: #00a03c;
+    border-color: #00a03c;
+    color: #ffffff;
+}
+
+.juego-saltar:hover { background: #00c04a; }
+
+.juego-restantes {
+    margin: 12px 0;
+    color: #cccccc;
+    text-align: center;
+    font-size: 14px;
+}
+
+.juego-form {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    list-style: none;
+    gap: 10px;
 }
 
-.juego-pistas li {
-    padding: 10px 12px;
-    background: #1a1a1a;
-    border: 1px solid #292929;
+.juego-buscador {
+    position: relative;
+}
+
+.juego-buscador input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #333;
     border-radius: 6px;
+    background: #ffffff;
+    color: #141414;
+    font: inherit;
+    font-size: 16px;
+}
+
+.juego-sugerencias {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 5;
+    overflow: hidden;
+    list-style: none;
+    background: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.juego-sugerencias button {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #292929;
+    color: #eeeeee;
+    font: inherit;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.juego-sugerencias button:hover { background: #2a2a2a; }
+.juego-sugerencias span { color: #888; }
+
+.juego-enviar {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #00a03c;
+    color: #ffffff;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.juego-enviar:hover { background: #00c04a; }
+
+.juego-final {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 18px;
+    padding: 16px;
+    border: 1px solid #292929;
+    border-radius: 8px;
+    background: #1a1a1a;
+}
+
+.juego-final.gano { border-color: #00a03c; background: #1d2a22; }
+.juego-final.perdio { border-color: #6b2a2a; background: #2a1a1a; }
+
+.juego-final-poster img {
+    display: block;
+    width: 70px;
+    border-radius: 4px;
+}
+
+.juego-final strong { font-size: 17px; }
+.juego-final p { margin-top: 4px; color: #cccccc; font-size: 14px; }
+.juego-final-pts { color: #00e054 !important; font-weight: 700; }
+.juego-final.perdio .juego-final-pts { color: #ff6b6b !important; }
+
+.juego-aviso {
+    margin-top: 12px;
+    color: #99aabb;
     font-size: 13px;
+    text-align: center;
 }
 
-.juego-pistas li.bloqueada {
-    color: #555;
-}
-
-.juego-pistas li.bloqueada::before {
-    content: "🔒 ";
-}
+.juego-aviso a { color: #00e054; }
 
 .juego-respuestas {
     display: flex;
@@ -1495,6 +1642,12 @@ h1 {
     font-size: 14px;
     background: #2a1a1a;
     color: #ff6b6b;
+}
+
+.juego-respuestas li.saltado {
+    background: #1f1f1f;
+    border: 1px solid #333;
+    color: #cccccc;
 }
 
 .juego-respuestas li.correcta {
@@ -1549,7 +1702,8 @@ button.volver {
     .detalle-titulo { font-size: 19px; }
     .detalle-ratings { flex-wrap: wrap; }
     .juego-hero { flex-direction: column; align-items: flex-start; }
-    .juego-pista { grid-template-columns: 1fr; }
+    .juego-numeros button, .juego-saltar { min-width: 36px; height: 36px; font-size: 15px; }
+    .juego-pista-texto { font-size: 13px; }
     .diario-fila { grid-template-columns: 28px 30px 1fr auto auto; gap: 8px; }
     .juego-fila { grid-template-columns: 1fr auto; }
 }
