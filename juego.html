@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina la película - The Film Cave</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="juego">
+    <header class="header">
+        <a href="index.html" class="logo">The Film Cave</a>
+
+        <nav class="nav">
+            <a href="index.html">Películas</a>
+            <a href="listas.html">Listas</a>
+            <a href="juego.html" class="activo">Adivina la película</a>
+        </nav>
+
+        <a href="perfil.html" class="avatar" aria-label="Perfil" title="Mi perfil"></a>
+    </header>
+
+    <main class="container">
+        <section class="juego-hero">
+            <div>
+                <h1>Adivina la película</h1>
+                <p>Una película nueva cada día. Mirá las pistas y escribí el título antes de quedarte sin intentos.</p>
+            </div>
+            <div class="juego-puntos">
+                <strong id="puntos">0</strong>
+                <span>puntos</span>
+            </div>
+        </section>
+
+        <div class="tabs" data-grupo="juego" role="tablist">
+            <button type="button" data-tab="dias" class="activo">Juegos diarios</button>
+            <button type="button" data-tab="como">Cómo se juega</button>
+        </div>
+
+        <!-- ===== Pestaña 1: un juego por día, el más reciente arriba ===== -->
+        <section data-grupo="juego" data-panel="dias" class="movie-section">
+            <!--
+                Estructura de cada día (se genera desde js/juego.js):
+                <button class="dia-card [jugado|acertado]" data-fecha="2026-11-18">
+                    <span class="dia-numero">#12</span>
+                    <span class="dia-fecha">18 nov 2026</span>
+                    <span class="dia-estado">Jugar →</span>
+                </button>
+            -->
+            <div id="lista-dias" class="dias-list"></div>
+        </section>
+
+        <!-- ===== Pestaña 2: reglas ===== -->
+        <section data-grupo="juego" data-panel="como" class="movie-section" hidden>
+            <ol class="reglas">
+                <li><strong>Un juego por día.</strong> Cada día hay una película nueva para adivinar.</li>
+                <li><strong>Pistas progresivas.</strong> Empezás con una imagen borrosa y cada fallo revela una pista más.</li>
+                <li><strong>6 intentos.</strong> Cuantos menos intentos uses, más puntos ganás.</li>
+                <li><strong>Sumá aciertos.</strong> Tus aciertos y puntos aparecen en tu perfil.</li>
+            </ol>
+        </section>
+
+        <!-- ===== Vista de juego (se muestra al hacer clic en un día) ===== -->
+        <section id="vista-juego" class="juego-tablero" hidden>
+            <button type="button" id="volver-dias" class="volver">← Volver a los días</button>
+            <div class="juego-tablero-head">
+                <h2 id="juego-titulo-dia">Día #—</h2>
+                <span id="juego-intentos" class="juego-intentos">Intento 1 de 6</span>
+            </div>
+
+            <div class="juego-pista">
+                <div class="juego-imagen"><span>Pista visual</span></div>
+                <ul id="juego-pistas" class="juego-pistas">
+                    <li class="bloqueada">Año de estreno</li>
+                    <li class="bloqueada">Género</li>
+                    <li class="bloqueada">Director</li>
+                    <li class="bloqueada">Actor principal</li>
+                    <li class="bloqueada">Sinopsis</li>
+                </ul>
+            </div>
+
+            <form id="form-adivinar" class="search-form">
+                <input type="text" id="adivinar-texto" placeholder="Escribí el título de la película..." autocomplete="off">
+                <button type="submit">Adivinar</button>
+            </form>
+            <ul id="juego-respuestas" class="juego-respuestas"></ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>The Film Cave</p>
+        <p class="tmdb">Este producto usa la API de TMDB pero no está avalado ni certificado por TMDB.</p>
+    </footer>
+    <script type="module" src="js/juego.js"></script>
+</body>
+</html>

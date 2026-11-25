@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listas - The Film Cave</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="listas">
+    <header class="header">
+        <a href="index.html" class="logo">The Film Cave</a>
+
+        <nav class="nav">
+            <a href="index.html">Películas</a>
+            <a href="listas.html" class="activo">Listas</a>
+            <a href="juego.html">Adivina la película</a>
+        </nav>
+
+        <a href="perfil.html" class="avatar" aria-label="Perfil" title="Mi perfil"></a>
+    </header>
+
+    <main class="container">
+        <div id="vista-listas">
+            <div class="tabs" data-grupo="listas" role="tablist">
+                <button type="button" data-tab="mias" class="activo">Mis listas</button>
+                <button type="button" data-tab="comunidad">Listas de la comunidad</button>
+            </div>
+
+            <div data-grupo="listas" data-panel="mias">
+                <div id="mias-sin-sesion" hidden>
+                    <p class="vacio"><a href="login.html?volver=listas.html">Iniciá sesión</a> para crear tus propias listas.</p>
+                </div>
+
+                <div id="mias-con-sesion" hidden>
+                    <section class="movie-section">
+                        <div class="section-head"><h2>Nueva lista</h2></div>
+                        <form id="form-lista" class="search-form">
+                            <input type="text" id="lista-nombre" placeholder="Nombre de la lista" maxlength="60" required>
+                            <input type="text" id="lista-desc" placeholder="Descripción (opcional)" maxlength="140">
+                            <select id="lista-visibilidad" aria-label="Visibilidad">
+                                <option value="publica">Pública</option>
+                                <option value="privada">Privada</option>
+                            </select>
+                            <button type="submit">Crear lista</button>
+                        </form>
+                    </section>
+
+                    <section class="movie-section">
+                        <div class="section-head"><h2>Públicas</h2></div>
+                        <div id="listas-publicas" class="lists-grid"></div>
+                    </section>
+
+                    <section class="movie-section">
+                        <div class="section-head"><h2>Privadas</h2></div>
+                        <div id="listas-privadas" class="lists-grid"></div>
+                    </section>
+                </div>
+            </div>
+
+            <section data-grupo="listas" data-panel="comunidad" class="movie-section" hidden>
+                <div class="section-head"><h2>Listas recientes de la comunidad</h2></div>
+                <div id="listas-comunidad" class="lists-grid"></div>
+            </section>
+        </div>
+
+        <div id="vista-lista" hidden>
+            <a href="listas.html" class="volver">← Volver a listas</a>
+            <div class="lista-head">
+                <div>
+                    <h1 id="lista-titulo"></h1>
+                    <p id="lista-autor" class="lista-autor"></p>
+                    <p id="lista-descripcion" class="lista-desc"></p>
+                </div>
+                <div id="lista-acciones" class="lista-acciones" hidden>
+                    <button id="cambiar-visibilidad" class="btn" type="button"></button>
+                    <button id="borrar-lista" class="btn-peligro" type="button">Eliminar lista</button>
+                </div>
+            </div>
+
+            <section id="seccion-anadir" class="movie-section" hidden>
+                <div class="section-head"><h2>Añadir películas</h2></div>
+                <form id="form-buscar-lista" class="search-form">
+                    <input type="text" id="buscar-lista-texto" placeholder="Buscar película para añadir...">
+                    <button type="submit">Buscar</button>
+                </form>
+                <div id="buscar-lista-resultados" class="mini-results"></div>
+            </section>
+
+            <section class="movie-section">
+                <div class="section-head"><h2>Películas (<span id="lista-count">0</span>)</h2></div>
+                <div id="lista-peliculas" class="movie-grid"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>The Film Cave</p>
+        <p class="tmdb">Este producto usa la API de TMDB pero no está avalado ni certificado por TMDB.</p>
+    </footer>
+    <script type="module" src="js/listas.js"></script>
+</body>
+</html>

@@ -6,23 +6,25 @@
     <title>Inicio - The Film Cave</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body data-pagina="inicio">
     <header class="header">
         <a href="index.html" class="logo">The Film Cave</a>
 
         <nav class="nav">
-            <a href="#">Películas</a>
-            <a href="#">Listas</a>
-            <a href="#">Adivina la película</a>
-            <a href="#">Reviews</a>
+            <a href="index.html" class="activo">Películas</a>
+            <a href="listas.html">Listas</a>
+            <a href="juego.html">Adivina la película</a>
         </nav>
 
-        <a href="#" class="avatar" aria-label="Perfil"></a>
+        <a href="perfil.html" class="avatar" aria-label="Perfil" title="Mi perfil"></a>
     </header>
 
     <main class="container">
-    
         <section class="search-section">
+            <div class="tabs tabs-chicas" data-grupo="busqueda" role="tablist">
+                <button type="button" data-tab="peliculas" class="activo">Películas</button>
+                <button type="button" data-tab="usuarios">Usuarios</button>
+            </div>
             <form id="search-form" class="search-form">
                 <input type="text" id="search-text" placeholder="Buscar película...">
                 <select id="search-genre">
@@ -32,18 +34,22 @@
             </form>
         </section>
 
-        <section class="movie-section">
-            <div class="section-head">
-                <h2>Populares recientemente</h2>
-                <a href="#" class="section-more">Más</a>
-            </div>
-            <div id="populares" class="poster-grid"></div>
-        </section>
-
         <section id="seccion-resultados" class="movie-section" hidden>
             <div class="section-head"><h2>Resultados</h2></div>
             <div id="resultados" class="movie-grid"></div>
             <button id="cargar-mas" class="load-more" type="button" hidden>Cargar más</button>
+        </section>
+
+        <section id="seccion-usuarios" class="movie-section" hidden>
+            <div class="section-head"><h2>Usuarios</h2></div>
+            <div id="resultados-usuarios" class="users-grid"></div>
+        </section>
+
+        <section class="movie-section">
+            <div class="section-head">
+                <h2>Populares recientemente</h2>
+            </div>
+            <div id="populares" class="poster-grid"></div>
         </section>
 
         <section class="movie-section">
@@ -51,23 +57,19 @@
             <div id="recomendaciones" class="movie-grid"></div>
         </section>
 
-        <div class="activity-layout">
-            <section class="activity-section">
-                <div class="section-head"><h2>Actividad reciente</h2></div>
-                <div id="actividad" class="activity-list"></div>
-            </section>
-
-            <aside class="sidebar">
-                <h3>Actividad</h3>
-                <div id="sidebar-actividad"></div>
-            </aside>
-        </div>
+        <section id="seccion-actividad" class="activity-section">
+            <div class="section-head">
+                <h2>Tu actividad reciente</h2>
+                <a href="perfil.html" class="section-more">Ver diario</a>
+            </div>
+            <div id="actividad" class="activity-list"></div>
+        </section>
     </main>
 
     <footer class="footer">
         <p>The Film Cave</p>
         <p class="tmdb">Este producto usa la API de TMDB pero no está avalado ni certificado por TMDB.</p>
     </footer>
-    <script src="js/main.js"></script>
+    <script type="module" src="js/inicio.js"></script>
 </body>
 </html>

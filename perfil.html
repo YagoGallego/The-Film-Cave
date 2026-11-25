@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - The Film Cave</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="perfil">
+    <header class="header">
+        <a href="index.html" class="logo">The Film Cave</a>
+
+        <nav class="nav">
+            <a href="index.html">Películas</a>
+            <a href="listas.html">Listas</a>
+            <a href="juego.html">Adivina la película</a>
+        </nav>
+
+        <a href="perfil.html" class="avatar" aria-label="Perfil" title="Mi perfil"></a>
+    </header>
+
+    <main class="container">
+        <p id="perfil-cargando" class="vacio">Cargando perfil...</p>
+
+        <div id="perfil-contenido" hidden>
+            <section class="perfil-head">
+                <span id="perfil-avatar" class="avatar avatar-grande"></span>
+                <div class="perfil-datos">
+                    <div class="perfil-nombre">
+                        <h1 id="perfil-nombre"></h1>
+                        <button id="btn-salir" class="btn" type="button" hidden>Cerrar sesión</button>
+                    </div>
+
+                    <p id="perfil-bio" class="perfil-bio"></p>
+                    <button id="btn-editar-bio" class="enlace-boton" type="button" hidden>Editar descripción</button>
+                    <form id="form-bio" class="form-bio" hidden>
+                        <textarea id="bio-texto" rows="3" maxlength="300" placeholder="Contá algo sobre vos y tus películas favoritas"></textarea>
+                        <div>
+                            <button type="submit" class="btn btn-verde">Guardar</button>
+                            <button type="button" id="bio-cancelar" class="btn">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <div class="perfil-stats">
+                <div><strong id="stat-diario">0</strong><span>vistas</span></div>
+                <div><strong id="stat-likes">0</strong><span>likes</span></div>
+                <div><strong id="stat-listas">0</strong><span>listas</span></div>
+                <div><strong id="stat-aciertos">0</strong><span>aciertos</span></div>
+            </div>
+
+            <div class="tabs" data-grupo="perfil" role="tablist">
+                <button type="button" data-tab="diario" class="activo">Diario</button>
+                <button type="button" data-tab="likes">Likes</button>
+                <button type="button" data-tab="listas">Listas</button>
+                <button type="button" data-tab="juego">Juego</button>
+                <button type="button" data-tab="resenas" id="tab-resenas" hidden>Mis reseñas</button>
+            </div>
+
+            <section data-grupo="perfil" data-panel="diario" class="movie-section">
+                <div id="perfil-diario" class="diario"></div>
+            </section>
+
+            <section data-grupo="perfil" data-panel="likes" class="movie-section" hidden>
+                <div id="perfil-likes" class="movie-grid"></div>
+            </section>
+
+            <section data-grupo="perfil" data-panel="listas" class="movie-section" hidden>
+                <div id="perfil-listas" class="lists-grid"></div>
+            </section>
+
+            <section data-grupo="perfil" data-panel="juego" class="movie-section" hidden>
+                <div class="juego-resumen">
+                    <div><strong id="juego-aciertos">0</strong><span>aciertos</span></div>
+                    <div><strong id="juego-jugados">0</strong><span>días jugados</span></div>
+                    <div><strong id="juego-puntos">0</strong><span>puntos</span></div>
+                </div>
+                <div id="perfil-juego" class="juego-historial"></div>
+            </section>
+
+            <section data-grupo="perfil" data-panel="resenas" class="movie-section" hidden>
+                <p class="nota-privada">Solo vos podés ver tus reseñas.</p>
+                <div id="perfil-resenas" class="reviews-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>The Film Cave</p>
+        <p class="tmdb">Este producto usa la API de TMDB pero no está avalado ni certificado por TMDB.</p>
+    </footer>
+    <script type="module" src="js/perfil.js"></script>
+</body>
+</html>
