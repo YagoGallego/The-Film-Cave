@@ -23,7 +23,7 @@
         <section class="juego-hero">
             <div>
                 <h1>Adivina la película</h1>
-                <p>Una película nueva cada día. Mirá las pistas y escribí el título antes de quedarte sin intentos.</p>
+                <p>Una película nueva cada día. Mirá las escenas y adiviná el título antes de quedarte sin intentos.</p>
             </div>
             <div class="juego-puntos">
                 <strong id="puntos">0</strong>
@@ -53,8 +53,8 @@
         <section data-grupo="juego" data-panel="como" class="movie-section" hidden>
             <ol class="reglas">
                 <li><strong>Un juego por día.</strong> Cada día hay una película nueva para adivinar.</li>
-                <li><strong>Pistas progresivas.</strong> Empezás con una imagen borrosa y cada fallo revela una pista más.</li>
-                <li><strong>6 intentos.</strong> Cuantos menos intentos uses, más puntos ganás.</li>
+                <li><strong>Pistas progresivas.</strong> Empezás con una escena y cada fallo (o salto) desbloquea otra escena con una pista nueva.</li>
+                <li><strong>6 intentos.</strong> Acertar al 1º intento da 6 puntos, al 2º 5 puntos... y al 6º 1 punto.</li>
                 <li><strong>Sumá aciertos.</strong> Tus aciertos y puntos aparecen en tu perfil.</li>
             </ol>
         </section>
@@ -63,26 +63,36 @@
         <section id="vista-juego" class="juego-tablero" hidden>
             <button type="button" id="volver-dias" class="volver">← Volver a los días</button>
             <div class="juego-tablero-head">
-                <h2 id="juego-titulo-dia">Día #—</h2>
-                <span id="juego-intentos" class="juego-intentos">Intento 1 de 6</span>
+                <h2 id="juego-titulo-dia">Película #—</h2>
+                <span id="juego-fecha" class="juego-intentos"></span>
             </div>
 
-            <div class="juego-pista">
-                <div class="juego-imagen"><span>Pista visual</span></div>
-                <ul id="juego-pistas" class="juego-pistas">
-                    <li class="bloqueada">Año de estreno</li>
-                    <li class="bloqueada">Género</li>
-                    <li class="bloqueada">Director</li>
-                    <li class="bloqueada">Actor principal</li>
-                    <li class="bloqueada">Sinopsis</li>
-                </ul>
+            <!-- Escena actual + la pista escrita encima (como en el boceto) -->
+            <div class="juego-escena">
+                <img id="juego-img" alt="Escena de la película">
+                <p id="juego-pista-texto" class="juego-pista-texto" hidden></p>
             </div>
 
-            <form id="form-adivinar" class="search-form">
-                <input type="text" id="adivinar-texto" placeholder="Escribí el título de la película..." autocomplete="off">
-                <button type="submit">Adivinar</button>
+            <!-- Botones 1-6 para volver a ver escenas ya desbloqueadas + Saltar -->
+            <div class="juego-controles">
+                <div id="juego-numeros" class="juego-numeros"></div>
+                <button type="button" id="btn-saltar" class="juego-saltar">Saltar ⏭</button>
+            </div>
+            <p id="juego-restantes" class="juego-restantes"></p>
+
+            <form id="form-adivinar" class="juego-form" autocomplete="off">
+                <div class="juego-buscador">
+                    <input type="text" id="adivinar-texto" placeholder="Buscá una película...">
+                    <ul id="juego-sugerencias" class="juego-sugerencias" hidden></ul>
+                </div>
+                <button type="submit" class="juego-enviar">Enviar</button>
             </form>
+
+            <div id="juego-final" class="juego-final" hidden></div>
             <ul id="juego-respuestas" class="juego-respuestas"></ul>
+            <p id="juego-aviso-login" class="juego-aviso" hidden>
+                <a href="login.html">Iniciá sesión</a> para guardar tus puntos.
+            </p>
         </section>
     </main>
 
