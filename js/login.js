@@ -12,8 +12,18 @@ function destino() {
 }
 
 // Si ya hay sesión no tiene sentido estar acá
+// (también pasa al volver del enlace de confirmación del correo)
 const { data } = await supabase.auth.getSession();
 if (data.session) location.replace(destino());
+
+// Si el enlace del correo falló, Supabase lo indica en la URL: #error_code=...
+const errorUrl = new URLSearchParams(location.hash.slice(1)).get("error_code");
+if (errorUrl) {
+    msg.textContent = errorUrl === "otp_expired"
+        ? "El enlace de confirmación caducó o ya se usó. Probá entrar con tu email y contraseña; si no te deja, registrate de nuevo para recibir otro correo."
+        : "No se pudo confirmar el email. Probá de nuevo.";
+    history.replaceState(null, "", location.pathname + location.search);
+}
 
 iniciarPestanas(document.querySelector('.tabs[data-grupo="login"]'), () => { msg.textContent = ""; });
 
@@ -49,7 +59,12 @@ document.getElementById("form-registro").addEventListener("submit", async e => {
     const { data: res, error } = await supabase.auth.signUp({
         email: f.email.value.trim(),
         password: f.password.value,
-        options: { data: { username } }  // lo usa la base de datos para crear el perfil
+        options: {
+            data: { username },  // lo usa la base de datos para crear el perfil
+            // El enlace del correo de confirmación vuelve a este login.html,
+            // esté la web en localhost o en GitHub Pages
+            emailRedirectTo: new URL("login.html", location.href).href
+        }
     });
     if (error) {
         msg.textContent = "No se pudo crear la cuenta: " + error.message;
